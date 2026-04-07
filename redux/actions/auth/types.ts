@@ -1,0 +1,15 @@
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS' as const;
+export const SIGNUP_FAIL = 'SIGNUP_FAIL' as const;
+export const ACTIVATION_SUCCESS = 'ACTIVATION_SUCCESS' as const;
+export const ACTIVATION_FAIL = 'ACTIVATION_FAIL' as const;
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS' as const;
+export const LOGIN_FAIL = 'LOGIN_FAIL' as const;
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS' as const;
+export const LOAD_USER_FAIL = 'LOAD_USER_FAIL' as const;
+export const LOAD_PROFILE_SUCCESS = 'LOAD_PROFILE_SUCCESS' as const;
+export const LOAD_PROFILE_FAIL = 'LOAD_PROFILE_FAIL' as const;
+export const REFRESH_TOKEN_SUCCESS = 'REFRESH_TOKEN_SUCCESS' as const;
+export const REFRESH_TOKEN_FAIL = 'REFRESH_TOKEN_FAIL' as const;
+export const VERIFY_TOKEN_SUCCESS = 'VERIFY_TOKEN_SUCCESS' as const;
+export const VERIFY_TOKEN_FAIL = 'VERIFY_TOKEN_FAIL' as const;
+export const LOGOUT = 'LOGOUT' as const;
