@@ -13,8 +13,8 @@ import LoadingMoon from '@/components/loaders/LoadingMoon';
 
 export default function ActivatePage() {
   const params = useSearchParams();
-  const uid = params.get('uid');
-  const token = params.get('token');
+  const uid = params?.get('uid');
+  const token = params?.get('token');
 
   const [loading, setLoading] = useState(false);
   const dispatch: ThunkDispatch<any, any, UnknownAction> = useDispatch();

@@ -21,12 +21,12 @@ interface ApiResponse<T> {
   message?: string;
 }
 
-interface ApiResponsePagination<T, P> {
+/* interface ApiResponsePagination<T, P> {
   data?: T;
   error?: CustomError;
   message?: string;
   pagination?: P;
-}
+} */
 
 // ─── Axios instance ──────────────────────────────────────────────────────────
 // baseURL vacío: todas las llamadas van a /api/... de vuestras propias Route Handlers

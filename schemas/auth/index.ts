@@ -115,3 +115,4 @@ export const changePasswordSchema = z.object({
   message: 'Passwords do not match',
   path: ['re_new_password'],
 });
+

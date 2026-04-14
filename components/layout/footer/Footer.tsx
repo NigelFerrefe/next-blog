@@ -1,5 +1,6 @@
 //import EmailForm from '@/components/cta/EmailForm';
 
+import EmailForm from '@/components/pages/main/blog/detail/EmailForm';
 import DarkModeButton from '@/components/ui/DarkModeButton';
 
 const navigation = {
@@ -83,10 +84,10 @@ export default function Footer() {
             <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">
               Subscribe to our newsletter
             </h3>
-            <p className="dark:text-dark-txt mt-2 text-sm/6 text-gray-600">
+            <p className="dark:text-dm-txt mt-2 text-sm/6 text-gray-600">
               The latest news, articles, and resources, sent to your inbox weekly.
             </p>
-            {/* <EmailForm /> */}
+             <EmailForm /> 
           </div>
 
           {/* Legal */}
@@ -97,7 +98,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="dark:text-dark-txt text-sm/6 text-gray-600 hover:text-gray-900"
+                    className="dark:text-dm-txt text-sm/6 text-gray-600 hover:text-gray-900"
                   >
                     {item.name}
                   </a>
@@ -113,14 +114,14 @@ export default function Footer() {
               <a
                 key={item.name}
                 href={item.href}
-                className="dark:text-dark-txt dark:hover:text-dark-txt-secondary text-gray-600 hover:text-gray-800"
+                className="dark:text-dm-txt dark:hover:text-dm-txt-secondary text-gray-600 hover:text-gray-800"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon aria-hidden="true" className="size-6" />
               </a>
             ))}
           </div>
-          <p className="dark:text-dark-txt mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0">
+          <p className="dark:text-dm-txt mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0">
             &copy; 2026 Made by Nigel Ferreres. All rights reserved.
           </p>
         </div>

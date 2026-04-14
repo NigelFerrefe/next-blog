@@ -8,3 +8,10 @@ export interface ICategory {
   thumbnail: IMedia;
   slug: string;
 }
+
+
+export interface ICategoryList {
+  name: string;
+  thumbnail: IMedia;
+  slug: string;
+}

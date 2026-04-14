@@ -5,8 +5,8 @@ import NewPasswordForm from '@/components/forms/NewPasswordForm';
 
 export default function ForgotPasswordConfirmPage() {
   const params = useSearchParams();
-  const uid = params.get('uid');
-  const token = params.get('token');
+  const uid = params?.get('uid');
+  const token = params?.get('token');
   
 
   return (
@@ -16,7 +16,7 @@ export default function ForgotPasswordConfirmPage() {
           Change your password
         </h2>
         <div className="mt-10 space-y-2">
-          <NewPasswordForm uid={uid} token={token} />
+          <NewPasswordForm uid={uid ?? null} token={token ?? null} />
         </div>
       </div>
     </div>

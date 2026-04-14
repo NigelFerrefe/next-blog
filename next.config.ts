@@ -11,7 +11,20 @@ const nextConfig: NextConfig = {
         hostname: 'storage.googleapis.com',
         pathname: '/ferrefe-blog-app-bucket/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: false, // turn to true in prod mode
+      },
+    ];
   },
 };
 

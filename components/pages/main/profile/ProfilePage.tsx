@@ -1,7 +1,8 @@
 
+import ProfileInfo from '@/components/pages/main/profile/ProfileInfo';
+import UserInfo from '@/components/pages/main/profile/UserInfo';
 import Container from '@/components/ui/Container';
-import UserInfo from './UserInfo';
-import ProfileInfo from './ProfileInfo';
+
 
 const ProfilePage = () => {
   return (

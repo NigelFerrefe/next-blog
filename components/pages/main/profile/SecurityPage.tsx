@@ -1,6 +1,7 @@
 
+import SecurityInfo from '@/components/pages/main/profile/SecurityInfo';
 import Container from '@/components/ui/Container';
-import SecurityInfo from './SecurityInfo';
+
 
 const SecurityPage = () => {
   return (

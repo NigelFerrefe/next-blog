@@ -1,30 +1,59 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { getPagination } from '@/lib/api/api.client';
+
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { getPagination, get } from '@/lib/api/api.client';
 import { PaginatedResponse } from '@/types/pagination';
 import { ICategory } from '@/types/blog/category';
 
-interface UseCategoriesParams {
-  parentId?: string;
+interface UseInfiniteCategoriesParams {
+  parentSlug?: string;
   search?: string;
   ordering?: 'az' | 'za';
-  page?: number;
 }
 
-export const useCategories = ({
-  parentId,
+export const useInfiniteCategories = ({
+  parentSlug,
   search,
   ordering,
-  page = 1,
-}: UseCategoriesParams = {}) => {
-  const params = new URLSearchParams();
-  if (parentId) params.set('parent_id', parentId);
-  if (search) params.set('search', search);
-  if (ordering) params.set('ordering', ordering);
-  params.set('p', String(page));
+}: UseInfiniteCategoriesParams = {}) => {
+  const query = useInfiniteQuery({
+    queryKey: ['categories-infinite', parentSlug ?? null, search ?? '', ordering ?? ''],
+    initialPageParam: 1 as number,
+    queryFn: async ({ pageParam }: { pageParam: number }) => {
+      const params = new URLSearchParams();
 
-  return useQuery({
-    queryKey: ['categories', parentId, search, ordering, page],
-    queryFn: () => getPagination<PaginatedResponse<ICategory>>(`/api/blog/categories?${params.toString()}`),
+      if (parentSlug) params.set('parent_slug', parentSlug);
+      if (search) params.set('search', search);
+      if (ordering) params.set('ordering', ordering);
+      params.set('p', String(pageParam));
+
+      return getPagination<PaginatedResponse<ICategory>>(
+        `/api/blog/categories?${params.toString()}`
+      );
+    },
+    getNextPageParam: (lastPage: PaginatedResponse<ICategory>) =>
+      lastPage.has_more_pages ? lastPage.next_page ?? undefined : undefined,
   });
+
+  const categories = query.data?.pages.flatMap((page) => page.results) ?? [];
+
+  return {
+    ...query,
+    categories,
+  };
+};
+
+
+export const useCategoriesList = () => {
+  const query = useQuery({
+    queryKey: ['categories-list'],
+    queryFn: async () => {
+      return get<ICategory[]>('/api/blog/categories/list');
+    },
+  });
+
+  return {
+    ...query,
+    categories: query.data ?? [],
+  };
 };

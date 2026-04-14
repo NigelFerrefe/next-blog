@@ -19,7 +19,7 @@ const serverApi = axios.create({
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-const buildHeaders = (access: string, includeApiKey = false) => ({
+const buildHeaders = (access: string, includeApiKey = true) => ({
   "Accept": "application/json",
   "Content-Type": "application/json",
   "Authorization": `Bearer ${access}`,
@@ -69,7 +69,7 @@ export const unauthorizedResponse = () =>
 export const serverGet = async <T>(
   path: string,
   access: string,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.get<T>(path, {
@@ -99,7 +99,7 @@ export const serverPost = async <T>(
   path: string,
   access: string,
   body: unknown,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.post<T>(path, body, {
@@ -115,7 +115,7 @@ export const serverPut = async <T>(
   path: string,
   access: string,
   body: unknown,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.put<T>(path, body, {
@@ -131,7 +131,7 @@ export const serverPatch = async <T>(
   path: string,
   access: string,
   body: unknown,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.patch<T>(path, body, {
@@ -146,7 +146,7 @@ export const serverPatch = async <T>(
 export const serverDel = async <T>(
   path: string,
   access: string,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.delete<T>(path, {
@@ -161,7 +161,7 @@ export const serverDel = async <T>(
 export const serverGetPagination = async <T>(
   path: string,
   access: string,
-  includeApiKey = false
+  includeApiKey = true
 ): Promise<ServerApiResponse<T>> => {
   try {
     const { data, status } = await serverApi.get<T>(path, {
@@ -186,3 +186,19 @@ export const serverGetPaginationPublic = async <T>(
     return handleError(error, "serverGetPaginationPublic");
   }
 };
+
+
+export const serverPostPublic = async <T>(
+  path: string,
+  body: unknown,
+  includeApiKey = true
+): Promise<ServerApiResponse<T>> => {
+  try {
+    const { data, status } = await serverApi.post<T>(path, body, {
+      headers: buildPublicHeaders(includeApiKey),
+    });
+    return handleResponse(data, status);
+  } catch (error) {
+    return handleError(error, "serverPostPublic");
+  }
+}

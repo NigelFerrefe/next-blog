@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { ToastError } from '@/components/toast/alerts';
 import { IMedia, ISelectedImage, ImageValue } from '@/types/media/media';
+import { X } from 'lucide-react';
 
 interface ComponentProps {
   data: ImageValue;
@@ -40,7 +41,7 @@ export default function EditImage({
 
     if (!allowedFileTypes.includes(acceptedFile.type)) {
       ToastError(
-        `${acceptedFile.type} is not allowed. Only .jpg, .jpeg or .png extensions are allowed`
+        `${acceptedFile.type} is not allowed. Only .jpg, .jpeg or .png extensions are allowed`,
       );
       return;
     }
@@ -84,7 +85,7 @@ export default function EditImage({
       return URL.createObjectURL(data.file);
     }
 
-    return '/assets/img/placeholder/media.jpg';
+    return 'https://storage.googleapis.com/ferrefe-blog-app-bucket/media/profiles/default/user-icon-placeholder.png';
   };
 
   const getFileLabel = () => {
@@ -101,18 +102,31 @@ export default function EditImage({
 
   const srcUrl = getSrcUrl();
 
+  const handleClear = () => {
+    setData(null);
+  };
+  const hasImage = !!data;
 
   const normalStyle = <div>Normal style</div>;
 
   const bannerStyle = (
     <div>
-      <span className="dark:text-dark-txt block text-sm font-bold text-gray-900">{title}</span>
-      <span className="dark:text-dark-txt-secondary mb-2 block text-sm text-gray-500">
+      <span className="dark:text-dm-txt block text-sm font-bold text-gray-900">{title}</span>
+      <span className="dark:text-dm-txt-secondary mb-2 block text-sm text-gray-500">
         {description}
       </span>
 
       <div className="w-full">
-        <div className="flex flex-col-reverse">
+        <div className="relative flex flex-col-reverse">
+          {hasImage && (
+            <button
+              type="button"
+              onClick={handleClear}
+                className="absolute top-2 right-2 z-10 flex h-3 w-3  items-center  justify-center rounded-full bg-black/70 text-white hover:bg-black"
+            >
+              ×
+            </button>
+          )}
           <Image
             width={512}
             height={512}
@@ -120,16 +134,19 @@ export default function EditImage({
             alt=""
             className="h-48 w-full object-cover"
             loading="lazy"
-            
           />
         </div>
       </div>
 
       <div className="mt-2 w-full">
-        <ReactDropzone onDrop={handleDrop} multiple={false} accept={{ 'image/jpeg': [], 'image/png': [] }}>
+        <ReactDropzone
+          onDrop={handleDrop}
+          multiple={false}
+          accept={{ 'image/jpeg': [], 'image/png': [] }}
+        >
           {({ getRootProps, getInputProps }) => (
             <div
-              className="form-control text-md dark:border-dark-border dark:bg-dark-second dark:text-dark-txt-secondary hover:dark:bg-dark-third m-0 block w-full flex-grow cursor-pointer rounded border-2 border-dashed border-gray-200 bg-white bg-clip-padding p-4 text-gray-700 transition ease-in-out hover:border-gray-300 hover:bg-gray-50 focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+              className="form-control text-md dark:border-dm-border dark:bg-dm-second dark:text-dm-txt-secondary hover:dark:bg-dm-third m-0 block w-full flex-grow cursor-pointer rounded border-2 border-dashed border-gray-200 bg-white bg-clip-padding p-4 text-gray-700 transition ease-in-out hover:border-gray-300 hover:bg-gray-50 focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
               {...getRootProps()}
             >
               <input {...getInputProps()} />
@@ -149,35 +166,45 @@ export default function EditImage({
     </div>
   );
 
-
-
   const profileStyle = (
     <div>
-      <span className="dark:text-dark-txt block text-sm font-bold text-gray-900">{title}</span>
-      <span className="dark:text-dark-txt-secondary mb-2 block text-sm text-gray-500">
+      <span className="dark:text-dm-txt block text-sm font-bold text-gray-900">{title}</span>
+      <span className="dark:text-dm-txt-secondary mb-2 block text-sm text-gray-500">
         {description}
       </span>
 
       <div className="flex flex-col items-center gap-2 md:flex-row">
         <div className="flex-shrink-0">
-          <div className="aspect-w-0.5 aspect-h-0.5 w-32">
+          <div className="aspect-w-0.5 aspect-h-0.5 relative w-32">
+            {hasImage && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="absolute top-2 right-2 z-10 flex h-3 w-3  items-center  justify-center rounded-full bg-black/70 text-white hover:bg-black"
+              >
+                <X  />
+              </button>
+            )}
             <Image
               width={512}
               height={512}
               src={srcUrl}
               alt=""
               className="h-32 w-32 rounded-full object-cover object-center"
-              loading='eager'
-              
+              loading="eager"
             />
           </div>
         </div>
 
         <div className="w-full">
-          <ReactDropzone onDrop={handleDrop} multiple={false} accept={{ 'image/jpeg': [], 'image/png': [] }}>
+          <ReactDropzone
+            onDrop={handleDrop}
+            multiple={false}
+            accept={{ 'image/jpeg': [], 'image/png': [] }}
+          >
             {({ getRootProps, getInputProps }) => (
               <div
-                className="form-control text-md dark:border-dark-border dark:bg-dark-second dark:text-dark-txt-secondary hover:dark:bg-dark-third m-0 block w-full flex-grow cursor-pointer rounded border-2 border-dashed border-gray-200 bg-white bg-clip-padding p-4 text-gray-700 transition ease-in-out hover:border-gray-300 hover:bg-gray-50 focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+                className="form-control text-md dark:border-dm-border dark:bg-dm-second dark:text-dm-txt-secondary hover:dark:bg-dm-third m-0 block w-full flex-grow cursor-pointer rounded border-2 border-dashed border-gray-200 bg-white bg-clip-padding p-4 text-gray-700 transition ease-in-out hover:border-gray-300 hover:bg-gray-50 focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                 {...getRootProps()}
               >
                 <input {...getInputProps()} />

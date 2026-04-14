@@ -21,13 +21,17 @@ export default function AuthLinks() {
     router.push('/');
   };
 
+  const avatarSrc =
+    profile?.profile_picture?.url ||
+    'https://storage.googleapis.com/ferrefe-blog-app-bucket/media/profiles/default/user-icon-placeholder.png';
+
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <MenuButton>
           <Image
             className="h-10 w-auto"
-            src={profile?.profile_picture?.url}
+            src={avatarSrc}
             width={512}
             height={512}
             alt="profile-picture"
@@ -42,12 +46,14 @@ export default function AuthLinks() {
             <p className="truncate text-sm font-medium text-gray-900">{user?.username}</p>
           </div>
           <MenuItem>
-            <Link
-              href={`/public-profile/${user?.username}`}
-              className="block px-4 py-2 text-sm text-gray-700 data--focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-none"
-            >
-              Public Profile
-            </Link>
+            {user?.username && (
+              <a
+                href={`/public-profile/${user.username}`}
+                className="block px-4 py-2 text-sm text-gray-700 data--focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-none"
+              >
+                Public Profile
+              </a>
+            )}
           </MenuItem>
           <MenuItem>
             <Link

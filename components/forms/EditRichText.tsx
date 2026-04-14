@@ -21,7 +21,7 @@ export default function EditRichText<T extends FieldValues>({
   required = false,
   title = '',
   description = '',
-  maxTextLength = 1200,
+  maxTextLength = 2400,
 }: EditRichTextProps<T>) {
   const { field } = useController({ name, control });
 

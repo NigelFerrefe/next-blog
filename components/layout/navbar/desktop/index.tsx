@@ -30,7 +30,7 @@ export default function DesktopNavbar() {
 
           {/* Center */}
           <div className="flex flex-1 justify-center space-x-5">
-            <NavbarLink href="/about">About</NavbarLink>
+            <NavbarLink href="/blog">Blog</NavbarLink>
             <NavbarLink href="/contact">Contact</NavbarLink>
           </div>
 

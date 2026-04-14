@@ -5,7 +5,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
 
   const { data, ok, status, error } = await serverGetPaginationPublic(
-    `/api/categories?${searchParams.toString()}`
+    `/api/blog/categories?${searchParams.toString()}`
   );
 
   if (ok) return NextResponse.json(data, { status: 200 });

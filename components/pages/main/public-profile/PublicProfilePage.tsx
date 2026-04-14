@@ -1,3 +1,5 @@
+'use client';
+
 import { Profile } from '@/types/auth/profile';
 import { User } from '@/types/auth/user';
 import { BadgeCheck } from 'lucide-react';
@@ -6,6 +8,8 @@ import Link from 'next/link';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import BioInfo from './BioInfo';
 import Tabs from './Tabs';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/reducers';
 
 interface PublicProfileProps {
   user: User;
@@ -25,14 +29,24 @@ const PublicProfilePage = ({ user, profile }: PublicProfileProps) => {
       icon: <FaLinkedin className="h-5 w-5" />,
     },
   ];
+  const myUser = useSelector((state: RootState) => state.auth.user);
+  const isOwner = myUser?.username === user.username;
   const isCostumer = user?.role === 'customer';
+  const bannerSrc =
+    profile?.banner_picture?.url ||
+    'https://storage.googleapis.com/ferrefe-blog-app-bucket/media/profiles/default/banner.png';
+
+  const profileSrc =
+    profile?.profile_picture?.url ||
+    'https://storage.googleapis.com/ferrefe-blog-app-bucket/media/profiles/default/user-icon-placeholder.png';
+
   return (
     <div>
       <Image
         width={1920}
         height={1080}
         className="h-48 w-full object-cover lg:h-64"
-        src={profile.banner_picture.url || ''}
+        src={bannerSrc}
         alt=""
         priority
       />
@@ -43,7 +57,7 @@ const PublicProfilePage = ({ user, profile }: PublicProfileProps) => {
               width={512}
               height={512}
               className="border-dm-second h-24 w-24 rounded-full border bg-white object-cover md:h-32 md:w-32"
-              src={profile.profile_picture.url || ''}
+              src={profileSrc}
               alt=""
             />
           </div>
@@ -73,7 +87,7 @@ const PublicProfilePage = ({ user, profile }: PublicProfileProps) => {
           </div>
         </div>
         <BioInfo bio={profile.bio} />
-        <Tabs isCostumer={isCostumer}/>
+        <Tabs isCostumer={isCostumer} isOwner={isOwner} username={user.username} />
       </div>
     </div>
   );

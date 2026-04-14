@@ -1,16 +1,16 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @variant dark (&:where(:root.dark *, :root.dark));
 
 @theme {
-  --color-dm-main: #0D1117;
-  --color-dm-bg: #161B22;
-  --color-dm-second: #21262D;
-  --color-dm-third: #30363D;
-  --color-dm-border: #5B6473;
-  --color-dm-txt: #C9D1D9;
-  --color-dm-txt-secondary: #AAB2BB;
+  --color-dm-main: #0d1117;
+  --color-dm-bg: #161b22;
+  --color-dm-second: #21262d;
+  --color-dm-third: #30363d;
+  --color-dm-border: #5b6473;
+  --color-dm-txt: #c9d1d9;
+  --color-dm-txt-secondary: #aab2bb;
   --color-dm-primary: #5046e4;
   --color-dm-accent: #c7d2fe;
 }
