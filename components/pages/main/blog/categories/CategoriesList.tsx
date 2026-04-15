@@ -35,7 +35,8 @@ export default function CategoriesList({ categories }: ComponentProps) {
             leaveFrom="scale-100 opacity-100"
             leaveTo="scale-95 opacity-0"
           >
-            <MenuItems className="absolute bottom-full left-0 z-10 mb-2 w-56 origin-bottom-left rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+            <MenuItems className="absolute top-full left-0 z-20 mt-2 w-56 origin-top-left rounded-md bg-white dark:bg-dm-accent shadow-lg ring-1 ring-black/5 focus:outline-none">
+              {' '}
               <div className="py-1">
                 {categories.map((category) => {
                   const categorySlug = slugify(category.slug);

@@ -85,7 +85,7 @@ const PostsList = () => {
   return (
     <div className="py-32 pb-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="pb-10">
+        <div className="pb-10 relative z-20">
           <CategoriesBar />
           {/* Sort & ordering options */}
           <div className="flex items-center justify-end pt-4">

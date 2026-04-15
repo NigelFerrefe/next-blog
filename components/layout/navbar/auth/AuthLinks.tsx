@@ -27,7 +27,7 @@ export default function AuthLinks() {
 
   return (
     <div>
-      <Menu as="div" className="relative inline-block text-left">
+      <Menu as="div" className="relative inline-block text-left ">
         <MenuButton>
           <Image
             className="h-10 w-auto"
@@ -42,7 +42,7 @@ export default function AuthLinks() {
           className="absolute right-0 z-30 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[enter]:ease-out data-[leave]:duration-75 data-[leave]:ease-in"
         >
           <div className="px-4 py-3">
-            <p className="text-sm">Signed in as:</p>
+            <p className="text-sm dark:text-gray-900">Signed in as:</p>
             <p className="truncate text-sm font-medium text-gray-900">{user?.username}</p>
           </div>
           <MenuItem>
